@@ -1,4 +1,4 @@
-package libs
+package etcdGrpcClient
 
 import (
 	"go.etcd.io/etcd/clientv3"
