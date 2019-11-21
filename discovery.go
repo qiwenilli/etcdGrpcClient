@@ -28,7 +28,7 @@ var (
 //发现服务
 type DiscoveryService struct {
 	Prefix          string
-	ServiceNameList []string //其实是约定的key 的第二段，例：/etcd3_naming/delay-queue(这里就是ServiceName)/192.168.1.176:5007
+	ServiceNameList []string
 	GRPCResolver    *naming.GRPCResolver
 	EtcdClient      *clientv3.Client
 }
@@ -78,7 +78,7 @@ func (this *DiscoveryService) getUpdateAddr(serviceName string) (addrList []stri
 //自定义 ResolverBuilder & Resolver
 type customerResolverBuilder struct {
 	CustomerScheme string              //"qiwen"
-	AddrsStore     map[string][]string // "markday_rpc_server": {"192.168.1.176:8091", "192.168.1.176:8090"},
+	AddrsStore     map[string][]string // "user.service.grpc": {"192.168.1.176:8091", "192.168.1.176:8090"},
 }
 
 func (this *customerResolverBuilder) Build(target resolver.Target, cc resolver.ClientConn, opts resolver.BuildOption) (resolver.Resolver, error) {
